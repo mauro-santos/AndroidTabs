@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AndroidTabs</string>
+
+    <string name="one">Fragment 1</string>
+    <string name="two">Fragment 2</string>
+    <string name="three">Fragment 3</string>
+    <string name="four">Fragment 4</string>
+    <string name="five">Fragment 5</string>
 </resources>
