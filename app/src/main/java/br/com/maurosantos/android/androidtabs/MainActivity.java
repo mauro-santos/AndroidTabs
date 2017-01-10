@@ -17,6 +17,13 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private int[] tabIcons = {
+            R.drawable.ic_favorite_white_24dp,
+            R.drawable.ic_account_circle_white_24dp,
+            R.drawable.ic_alarm_on_white_24dp,
+            R.drawable.ic_cached_white_24dp,
+            R.drawable.ic_query_builder_white_24dp
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +39,25 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+        setupTabIcons();
+    }
+
+    private void setupTabIcons() {
+        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
+        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
+        tabLayout.getTabAt(3).setIcon(tabIcons[3]);
+        tabLayout.getTabAt(4).setIcon(tabIcons[4]);
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        adapter.addFragment(new OneFragment(), "ONE");
-        adapter.addFragment(new TwoFragment(), "TWO");
-        adapter.addFragment(new ThreeFragment(), "THREE");
-        adapter.addFragment(new FourFragment(), "FOUR");
-        adapter.addFragment(new FiveFragment(), "FIVE");
+        adapter.addFrag(new OneFragment(), "ONE");
+        adapter.addFrag(new TwoFragment(), "TWO");
+        adapter.addFrag(new ThreeFragment(), "THREE");
+        adapter.addFrag(new FourFragment(), "FOUR");
+        adapter.addFrag(new FiveFragment(), "FIVE");
 
         viewPager.setAdapter(adapter);
     }
@@ -64,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             return mFragmentList.size();
         }
 
-        public void addFragment(Fragment fragment, String title) {
+        public void addFrag(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }
@@ -72,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
+            //return null;
         }
     }
 }
